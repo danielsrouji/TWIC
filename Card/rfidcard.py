@@ -37,8 +37,5 @@ def read_card():
                     post_to_db(code)
                     code = ''
             else:
-                    #if(type(data) == int):
-                    #print('testing validation')
-                    #print(type(data))
                     code = code + data
 read_card()
