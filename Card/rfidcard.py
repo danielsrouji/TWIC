@@ -16,7 +16,7 @@ firebase_url = 'https://twic-polymer.firebaseio.com/'
 def post_to_db(card_id):
     data={'id':card_id, 'number of times tapped': 0}
     sent = json.dumps(data)
-    result = requests.post(firebase_url+'/'+card_id+'/cards.json', sent)
+    result = requests.post(firebase_url+'/cards.json', sent)
     print 'Success!' + str(result.status_code) + ',' + result.text
 
 
@@ -32,10 +32,13 @@ def read_card():
             data = serial.read()
             if data == '\r':
                     print(code)
+                    print(type(code))
                     check_card(code)
-                    post_to_db(card1)
+                    post_to_db(code)
                     code = ''
             else:
+                    #if(type(data) == int):
                     #print('testing validation')
+                    #print(type(data))
                     code = code + data
 read_card()
